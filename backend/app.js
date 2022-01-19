@@ -15,11 +15,12 @@ const {
 } = require('./middlewares/validity');
 const NotFoundError = require('./utils/errors/notFound');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const cors = require('./middlewares/cors');
+const {cors} = require('./middlewares/cors');
 
 const { PORT = 3000 } = process.env;
 
 const app = express();
+
 app.use(helmet());
 app.use(bodyParser.json()); // для сборки JSON-формата
 app.use(bodyParser.urlencoded({ extended: true }));
