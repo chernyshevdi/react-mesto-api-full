@@ -14,6 +14,13 @@ const {
 } = require('./middlewares/validity');
 const NotFoundError = require('./utils/errors/notFound');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const allowedCors = [
+  'https://praktikum.tk',
+  'http://praktikum.tk',
+  'localhost:3000',
+  'http://api.chernyshevdi.nomoredomains.rocks',
+  'http://chernyshevdi.nomoredomains.rocks',
+];
 
 const { PORT = 3000 } = process.env;
 
