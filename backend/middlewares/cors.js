@@ -1,10 +1,7 @@
 const allowedCors = [
-    'https://praktikum.tk',
-    'http://praktikum.tk',
-    'localhost:3000',
     'http://api.chernyshevdi.nomoredomains.rocks',
-    'http://chernyshevdi.nomoredomains.rocks',
     'https://api.chernyshevdi.nomoredomains.rocks',
+    'http://chernyshevdi.nomoredomains.rocks',
     'https://chernyshevdi.nomoredomains.rocks',
   ];
 
