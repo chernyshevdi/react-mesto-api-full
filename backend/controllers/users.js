@@ -4,6 +4,7 @@ const User = require('../models/user');
 const NotFoundError = require('../utils/errors/notFound');
 const BadRequestError = require('../utils/errors/badRequest');
 const ConflictError = require('../utils/errors/conflict');
+
 const { NODE_ENV, JWT_SECRET } = process.env;
 
 module.exports.getUsers = (req, res, next) => {
@@ -109,7 +110,7 @@ module.exports.login = (req, res, next) => {
         maxAge: 3600000 * 24 * 7,
         httpOnly: true,
       })
-        .send({ message: 'Авторизация прошла успешно', token: token});
+        .send({ message: 'Авторизация прошла успешно', token });
     })
     .catch(next);
 };

@@ -1,4 +1,4 @@
-require('dotenv').config(); 
+require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
 const mongoose = require('mongoose');
@@ -15,7 +15,7 @@ const {
 } = require('./middlewares/validity');
 const NotFoundError = require('./utils/errors/notFound');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const {cors} = require('./middlewares/cors');
+const { cors } = require('./middlewares/cors');
 
 const { PORT = 3000 } = process.env;
 
@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(requestLogger);
 
-app.use(cors)
+app.use(cors);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
@@ -56,7 +56,7 @@ app.use((err, req, res, next) => {
   const message = statusCode === 500 ? 'Ошибка сервера' : err.message;
   res
     .status(statusCode)
-    .json({ message: message});
+    .json({ message });
   return next();
 });
 
