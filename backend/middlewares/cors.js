@@ -1,7 +1,5 @@
 const allowedCors = [
-    'http://api.chernyshevdi.nomoredomains.rocks',
     'https://api.chernyshevdi.nomoredomains.rocks',
-    'http://chernyshevdi.nomoredomains.rocks',
     'https://chernyshevdi.nomoredomains.rocks',
   ];
 
