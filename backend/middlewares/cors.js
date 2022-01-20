@@ -4,6 +4,8 @@ const allowedCors = [
     'localhost:3000',
     'http://api.chernyshevdi.nomoredomains.rocks',
     'http://chernyshevdi.nomoredomains.rocks',
+    'https://api.chernyshevdi.nomoredomains.rocks',
+    'https://chernyshevdi.nomoredomains.rocks',
   ];
 
   module.exports.cors = (req, res, next) => { 
