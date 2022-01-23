@@ -7,12 +7,10 @@ module.exports = (req, res, next) => {
   const { authorization } = req.headers;
   console.log(authorization)
   let payload;
-  console.log(payload)
+
   try {
-    payload = jwt.verify(authorization, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret');
-    console.log(payload)
+    payload = jwt.verify(authorization, JWT_SECRET);
   } catch (err) {
-    console.log(err)
     throw new UnauthorizedError('Необходима авторизация');
   }
   req.user = payload;
