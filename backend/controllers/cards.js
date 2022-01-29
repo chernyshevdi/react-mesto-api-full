@@ -43,6 +43,9 @@ module.exports.deleteCard = (req, res, next) => {
       else if(err.message === 'Запрашиваемая карточка не найдена') {
         throw new NotFoundError('Запрашиваемая карточка не найдена');
       }
+      else if(err.message === 'Нельзя удалить карточку другого пользователя') {
+        throw new ForbiddenError('Нельзя удалить карточку другого пользователя');
+      }
     })
     .catch(next);
 };
