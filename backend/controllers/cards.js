@@ -47,23 +47,6 @@ module.exports.deleteCard = (req, res, next) => {
     .catch(next);
 };
 
-
-        card.remove()
-          .then(() => res.status(200).send(card))
-          .catch(next);
-      }
-    })
-    .catch((err) => {
-      if (err.message === 'Нет карточки с таким _id') {
-        next(new NotFoundError('Нет карточки с таким _id'));
-      } else if (err.name === 'CastError') {
-        next(new IncorrectDataError('Передан некорректный _id'));
-      } else {
-        next(err);
-      }
-    });
-};
-
 module.exports.putLikeCard = (req, res, next) => {
   // обновим имя найденного по _id пользователя { likes: owner }
   const owner = req.user._id;
