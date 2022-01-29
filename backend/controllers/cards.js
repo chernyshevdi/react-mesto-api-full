@@ -39,6 +39,9 @@ module.exports.deleteCard = (req, res, next) => {
       if (err.name === 'CastError') {
         throw new BadRequestError('Некорректные данные карточки');
       }
+      else if(err.message === 'Запрашиваемая карточка не найдена') {
+        throw new NotFoundError('Запрашиваемая карточка не найдена');
+      }
     })
     .catch(next);
 };
@@ -62,6 +65,9 @@ module.exports.putLikeCard = (req, res, next) => {
       if (err.name === 'CastError') {
         throw new BadRequestError('Некорректные данные карточки');
       }
+      else if(err.message === 'Запрашиваемая карточка не найдена') {
+        throw new NotFoundError('Запрашиваемая карточка не найдена');
+      }
     })
     .catch(next);
 };
@@ -83,6 +89,9 @@ module.exports.dislikeCard = (req, res, next) => {
     .catch((err) => {
       if (err.name === 'CastError') {
         throw new BadRequestError('Некорректные данные карточки');
+      }
+      else if(err.message === 'Запрашиваемая карточка не найдена') {
+        throw new NotFoundError('Запрашиваемая карточка не найдена');
       }
     })
     .catch(next);
