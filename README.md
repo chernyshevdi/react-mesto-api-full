@@ -5,4 +5,5 @@
 
 IP 51.250.6.190 
 http://chernyshevdi.nomoredomains.rocks
+https://api.chernyshevdi.nomoredomains.rocks
 
