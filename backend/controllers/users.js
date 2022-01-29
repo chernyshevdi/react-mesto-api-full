@@ -15,10 +15,19 @@ module.exports.getUsers = (req, res, next) => {
 
 module.exports.getUser = (req, res, next) => {
   User.findById(req.params.userId)
-    .orFail(() => {
-      throw new NotFoundError('Запрашиваемый пользователь не найден');
-    })
-    .then((user) => res.send({ data: user }))
+    //.orFail(() => {
+      //throw new NotFoundError('Запрашиваемый пользователь не найден');
+    //})
+    .then((user) =>
+      {
+        if(!user) {
+          throw new NotFoundError('Запрашиваемый пользователь не найден');
+        }
+        else {
+          res.send({ data: user })
+        }
+      }
+    )
     .catch((err) => {
       if (err.name === 'CastError') {
         throw new BadRequestError('Некорректные данные пользователя');
