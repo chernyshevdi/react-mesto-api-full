@@ -24,13 +24,14 @@ module.exports.createCard = (req, res, next) => {
 };
 
 module.exports.deleteCard = (req, res, next) => {
-  Card.findByIdAndRemove(req.params.cardId)
+  Card.findById(req.params.cardId)
     .orFail(() => {
       throw new NotFoundError('Запрашиваемая карточка не найдена');
     })
     .then((card) => {
       if (req.user._id === card.owner.toString()) {
-        res.status(200).send({ data: card });
+        Card.findByIdAndRemove(req.params.cardId)
+        .then((res) => {res.status(200).send({data: card})})
       } else {
         throw new ForbiddenError('Нельзя удалить карточку другого пользователя');
       }
@@ -41,9 +42,6 @@ module.exports.deleteCard = (req, res, next) => {
       }
       else if(err.message === 'Запрашиваемая карточка не найдена') {
         throw new NotFoundError('Запрашиваемая карточка не найдена');
-      }
-      else if(err.message === 'Нельзя удалить карточку другого пользователя') {
-        throw new ForbiddenError('Нельзя удалить карточку другого пользователя');
       }
     })
     .catch(next);
