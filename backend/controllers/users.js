@@ -23,15 +23,18 @@ module.exports.getUser = (req, res, next) => {
       if (err.name === 'CastError') {
         throw new BadRequestError('Некорректные данные пользователя');
       }
+      else if(err.message === 'Запрашиваемый пользователь не найден') {
+        throw new NotFoundError('Запрашиваемый пользователь не найден');
+      }
     })
     .catch(next);
 };
 
 module.exports.getUserInfo = (req, res, next) => {
   User.findById(req.user._id)
-    .orFail(new NotFoundError('Запрашиваемый пользователь не найден'))// => {
-      //throw new NotFoundError('Запрашиваемый пользователь не найден');
-   // })
+    .orFail(() => {
+      throw new NotFoundError('Запрашиваемый пользователь не найден');
+    })
     .then((user) => {
       res.send({ data: user });
     })
