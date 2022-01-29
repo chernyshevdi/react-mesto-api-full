@@ -14,7 +14,6 @@ module.exports.getUsers = (req, res, next) => {
 };
 
 module.exports.getUser = (req, res, next) => {
-  console.log(req.params.userId)
   User.findById(req.params.userId)
     .orFail(() => {
       throw new NotFoundError('Запрашиваемый пользователь не найден');
@@ -30,9 +29,9 @@ module.exports.getUser = (req, res, next) => {
 
 module.exports.getUserInfo = (req, res, next) => {
   User.findById(req.user._id)
-    .orFail(() => {
-      throw new NotFoundError('Запрашиваемый пользователь не найден');
-    })
+    .orFail(new NotFoundError('Запрашиваемый пользователь не найден'))// => {
+      //throw new NotFoundError('Запрашиваемый пользователь не найден');
+   // })
     .then((user) => {
       res.send({ data: user });
     })
