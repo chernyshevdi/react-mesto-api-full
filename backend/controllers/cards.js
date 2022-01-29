@@ -32,8 +32,7 @@ module.exports.deleteCard = (req, res, next) => {
       if (req.user._id === card.owner.toString()) {
         res.status(200).send({ data: card });
       } else {
-
-        next(new ForbiddenError('Нельзя удалить карточку другого пользователя'));
+        throw new ForbiddenError('Нельзя удалить карточку другого пользователя');
       }
     })
     .catch((err) => {
@@ -42,6 +41,9 @@ module.exports.deleteCard = (req, res, next) => {
       }
       else if(err.message === 'Запрашиваемая карточка не найдена') {
         throw new NotFoundError('Запрашиваемая карточка не найдена');
+      }
+      else if(err.message === 'Нельзя удалить карточку другого пользователя') {
+        throw new ForbiddenError('Нельзя удалить карточку другого пользователя');
       }
     })
     .catch(next);
